@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "allowJs": true,
+    "checkJs": false,
+    "outDir": "./build",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "strict": true,
+    "typeRoots": ["./lib/globals/index.d.ts"],
+    "types": ["node", "jasmine"],
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["html_report", "node_modules", "junit_report", "build"],
+  "include": ["./**/*.ts"]
+}

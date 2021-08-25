@@ -1,0 +1,42 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12.22-browsers
+        environment:
+          DBUS_SESSION_BUS_ADDRESS: /dev/null
+    steps:
+      - checkout
+      - run: google-chrome --version
+      - restore_cache:
+          keys: 
+            - dependencies-{{ checksum "package-lock.json" }}
+            - dependencies-
+      - run:
+          name: NPM Install
+          command: |
+            npm i
+      - save_cache:
+          key: dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - "node_modules"
+      - run:
+          name: Code Compilation
+          command:
+            npm run build
+      - run:
+          name: Selenium Start
+          background: true
+          command: |
+            ./node_modules/.bin/webdriver-manager update
+            ./node_modules/.bin/webdriver-manager start
+      - run: sleep 20
+      - run:
+          name: Tests
+          command: npm run test
+      - store_artifacts:
+          path: html_report
+      - store_artifacts:
+          path: junit_report
+      - store_test_results:
+          path: junit_report

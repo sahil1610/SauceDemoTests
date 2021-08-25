@@ -1,0 +1,4 @@
+node_modules/*
+html_report/*
+junit_report/*
+build/*
