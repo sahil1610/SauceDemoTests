@@ -1,4 +1,5 @@
 ## Sauce Demo Functional Automation
+[![CircleCI](https://circleci.com/gh/sahil1610/SauceDemoTests/tree/master.svg?style=svg)](https://circleci.com/gh/sahil1610/SauceDemoTests/tree/master)
 
 ### Scope
 Following cases have been automated for the Sauce Demo Website
