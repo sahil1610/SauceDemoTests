@@ -1,8 +1,24 @@
 import { element, by, browser, promise } from "protractor";
 import constant from "../constants/Common";
 
+interface CheckoutYourInfoInterface {
+  firstName: string;
+  lastName: string;
+  zipCode: string;
+}
+
 //Checkout Your Information Page
-class CheckoutYourInformation {
+export default class CheckoutYourInformation {
+  firstName: string;
+  lastName: string;
+  zipCode: string;
+
+  constructor(obj: CheckoutYourInfoInterface) {
+    this.firstName = obj.firstName;
+    this.lastName = obj.lastName;
+    this.zipCode = obj.zipCode;
+  }
+
   firstNameInput = element(by.id("first-name"));
   lastNameInput = element(by.id("last-name"));
   zipCodeInput = element(by.id("postal-code"));
@@ -37,5 +53,3 @@ class CheckoutYourInformation {
     );
   };
 }
-
-export const checkoutYourInformation = new CheckoutYourInformation();

@@ -3,14 +3,14 @@ import loginData from "../data/Login.Data";
 import { headerComponent } from "../pages/components/Header.Component";
 import { inventory } from "../pages/Inventory.Page";
 import { cart } from "../pages/Cart.Page";
-import { checkoutYourInformation } from "../pages/Checkout.Your.Information.Page";
+import CheckoutYourInformation from "../pages/Checkout.Your.Information.Page";
 import checkoutData from "../data/Checkout.Data";
 import { checkoutOverview } from "../pages/Checkout.Overview.Page";
 import { checkoutComplete } from "../pages/Checkout.Complete.Page";
 
 describe("Sauce Demo Tests", () => {
   let login: Login;
-  let productName: string;
+  let checkoutYourInformation: CheckoutYourInformation;
   let productTitle: string;
   let productDesc: string;
   let productPrice: string;
@@ -18,6 +18,7 @@ describe("Sauce Demo Tests", () => {
 
   beforeAll(async () => {
     login = new Login(loginData);
+    checkoutYourInformation = new CheckoutYourInformation(checkoutData);
     await login.fillAndSubmitLoginForm();
   });
 
@@ -47,9 +48,15 @@ describe("Sauce Demo Tests", () => {
   it("to open cart and verify correct product has been added to cart", async () => {
     const cartItemIndex = 0;
     await headerComponent.openCartPage();
-    expect(await cart.getProductTitleByIndex(cartItemIndex)).toEqual(productTitle);
-    expect(await cart.getProductDescByIndex(cartItemIndex)).toEqual(productDesc);
-    expect(await cart.getProductPriceByIndex(cartItemIndex)).toEqual(productPrice);
+    expect(await cart.getProductTitleByIndex(cartItemIndex)).toEqual(
+      productTitle
+    );
+    expect(await cart.getProductDescByIndex(cartItemIndex)).toEqual(
+      productDesc
+    );
+    expect(await cart.getProductPriceByIndex(cartItemIndex)).toEqual(
+      productPrice
+    );
   });
 
   it("to Complete Checkout", async () => {
